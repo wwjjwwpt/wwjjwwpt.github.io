@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		Hello World | 
+		Python基础知识 | 
 	 
 	Hexo
 	</title>
@@ -123,7 +123,7 @@ var _hmt = _hmt || [];
 
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2021/04/24/Python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
 										Python基础知识
 									</a>
@@ -141,7 +141,7 @@ var _hmt = _hmt || [];
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2021/04/22/hello-world/">
 										hello-world
 									</a>
@@ -157,12 +157,12 @@ var _hmt = _hmt || [];
 	<div id="content">
 		<h1 id="article-title">
 
-	hello-world
+	Python基础知识
 </h1>
 <div class="article-meta">
 	
 	<span>John Doe</span>
-	<span>2021-04-22 21:07:06</span>
+	<span>2021-04-24 21:29:38</span>
 		<div id="article-categories">
     
 		<span>Categories：</span>
@@ -178,33 +178,55 @@ var _hmt = _hmt || [];
 </div>
 
 <div id="article-content">
-	<p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+	<h1 id="Python基础知识"><a href="#Python基础知识" class="headerlink" title="Python基础知识"></a>Python基础知识</h1><h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>面向对象编程的大特性：</p>
+<ol>
+<li>封装：通过类的属性和方法实现数据、内部实现逻辑的隐藏。</li>
+<li>继承：</li>
+</ol>
+<p>​        1.成员继承：子类继承了父类除构造方法之外的所有成员。</p>
+<p>​        2.重写：子类重新定义父类中的方法，覆盖父类中的方法。</p>
+<ol start="3">
+<li>多态：同一个方法调用，由于对象不同可能会产生不同的行为。多态的存在两个必要条件：继承、方法重写。</li>
+</ol>
+<h2 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h2><p>生成器（generator）：一边循环一边计算的机制。非常节约内存。<br>两种产生生成器对象的方式：<br>1）列表生成式加括号。例如：g1 = (x for x in range(10))<br>2）在函数定义中包含yield关键字：变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。用for循环调用generator时，拿不到generator的return语句的返回值。想要拿到返回值，必须捕获StopIteration错误，返回值包含在StopIteration的value中。<br>获取元素值的方式：<br>1）next()不断获得下一个元素的值，如果没有更多的元素，就会报错StopIteration；<br>2）通过for循环获得元素的值。</p>
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><ol>
+<li>匿名函数（lambda函数）：关键词lambda后面紧接一个或多个参数，一个冒号“：”和一个表达式。</li>
+</ol>
+<h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h2><ol start="2">
+<li>装饰器（Decorator）：在代码运行期间动态增加函数功能，但又不改变函数的定义。</li>
+</ol>
+<h2 id="内置数据类型"><a href="#内置数据类型" class="headerlink" title="内置数据类型"></a>内置数据类型</h2><p>1.list：有序；元素的数据类型可以不同，元素可以是另一个list；支持append; insert; remove; pop；index等。<br>2.tuple：有序；每个元素的指向不变，元素可以为list和不同类型的数据。<br>只1个元素的tuple定义时必须加一个逗号,，来消除歧义：</p>
+<p>》》》t = (1,)</p>
+<p>》》》t</p>
+<p>(1,)<br>3.string：有序；不可被修改。<br>4.set：无序；没有重复的元素，不可以放入可变对象，如list，因为无法判断两个可变对象是否相等。<br>5.dict：无序；使用键-值（key-value）存储，哈希映射计算位置，因此查找速度极快；dict的key必须是不可变对象，如字符串、整数、元祖，而不能是可变的list。</p>
+<h2 id="list的底层实现"><a href="#list的底层实现" class="headerlink" title="list的底层实现"></a>list的底层实现</h2><p>利用Cpython实现 list ，Cpython是python最常用的实现。</p>
+<ol>
+<li>初始化：<br>指向列表元素的指针列表<br>在内存中分配的插槽数，一般会稍大于list的长度，避免每次都需要重新分配。列表的增长方式为：0、4、8、16、25、35、46、58、72、88，…</li>
+<li>append：O(1)</li>
+</ol>
+<p><img src="C:\Users\Administrator.PC-20180921KPFA\AppData\Roaming\Typora\typora-user-images\image-20210424212512067.png" alt="image-20210424212512067"></p>
+<p><img src="C:\Users\Administrator.PC-20180921KPFA\AppData\Roaming\Typora\typora-user-images\image-20210424212622285.png" alt="image-20210424212622285"></p>
+<ol start="3">
+<li><p>insert：O(n)；涉及槽的扩充。</p>
+</li>
+<li><p>pop：O(1)；当列表元素少于槽的一半时，缩减槽的数量。</p>
+</li>
+</ol>
+<p>5）remove：O(n)</p>
+<h2 id="dict的底层实现"><a href="#dict的底层实现" class="headerlink" title="dict的底层实现"></a>dict的底层实现</h2><h2 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h2><h2 id="双等于与is的区别"><a href="#双等于与is的区别" class="headerlink" title="双等于与is的区别"></a>双等于与is的区别</h2><h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2>
 </div>
 
 
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2021/04/22/first/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  first
-              </a>
-            
         </div>
         <div class="item right">
+            
+              <a href="/2021/04/22/first/">
+                first
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
             
         </div>
     </div>

@@ -1,276 +1,252 @@
-<!DOCTYPE html><html lang="cn"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content=""><meta name="keywords" content=""><meta name="author" content="wenjiawei"><meta name="copyright" content="wenjiawei"><title>wenwenzi's notebook</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  copy: {
-    success: 'Copy successfully',
-    error: 'Copy error',
-    noSupport: 'The browser does not support'
-  },
-  hexoVersion: '5.4.1'
-} </script><meta name="generator" content="Hexo 5.4.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">wenjiawei</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">1</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">wenwenzi's notebook</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right"></span></div><div id="site-info"><div id="site-title">wenwenzi's notebook</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><article id="page"><h1></h1><div class="article-container"><h1 id="Linux内核"><a href="#Linux内核" class="headerlink" title="Linux内核"></a>Linux内核</h1><h2 id="内存地址"><a href="#内存地址" class="headerlink" title="内存地址"></a>内存地址</h2><h3 id="联合类型"><a href="#联合类型" class="headerlink" title="联合类型"></a>联合类型</h3><p>void *q q++ 报错 不知道有多长 </p>
-<p>int *p p++不报错</p>
-<h4 id="联合类型1、利用变色龙类型"><a href="#联合类型1、利用变色龙类型" class="headerlink" title="联合类型1、利用变色龙类型"></a>联合类型1、利用变色龙类型</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">struct</span> <span class="token class-name">Variant</span><span class="token punctuation">&#123;</span>
-
-Char type<span class="token punctuation">;</span>
-
-Union<span class="token punctuation">&#123;</span>
-<span class="token keyword">int</span> ival<span class="token punctuation">;</span>
-<span class="token keyword">long</span> lval<span class="token punctuation">;</span>
-<span class="token keyword">float</span> fval<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="联合类型2、超级强制类型转换"><a href="#联合类型2、超级强制类型转换" class="headerlink" title="联合类型2、超级强制类型转换"></a>联合类型2、超级强制类型转换</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c">A a<span class="token punctuation">;</span>
-B b<span class="token punctuation">;</span>
-<span class="token keyword">union</span> T<span class="token punctuation">&#123;</span>
-A a<span class="token punctuation">;</span>
-B b<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-T t<span class="token punctuation">;</span>
-t<span class="token punctuation">.</span>b <span class="token operator">=</span> b<span class="token punctuation">;</span>
-a <span class="token operator">=</span> t<span class="token punctuation">.</span>a<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="位域"><a href="#位域" class="headerlink" title="位域"></a>位域</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c">#<span class="token operator">:</span>表示只占一个字节
-<span class="token keyword">struct</span> <span class="token class-name">A</span><span class="token punctuation">&#123;</span>
-<span class="token keyword">unsigned</span> <span class="token keyword">char</span> a<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token keyword">char</span> b<span class="token operator">:</span><span class="token number">3</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-  A x<span class="token punctuation">;</span>
-  <span class="token keyword">char</span> <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>x<span class="token punctuation">;</span>
-  <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token number">0xdb</span>
-  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"%d,%d"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>A<span class="token punctuation">)</span><span class="token punctuation">,</span>x<span class="token punctuation">.</span>a<span class="token punctuation">,</span>x<span class="token punctuation">.</span>b<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c">class A<span class="token punctuation">&#123;</span>
-
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-<span class="token keyword">sizeof</span><span class="token punctuation">(</span>A<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span>
-
-class A<span class="token punctuation">&#123;</span>
-<span class="token keyword">int</span> x<span class="token punctuation">;</span>
-<span class="token keyword">int</span> y<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">sizeof</span><span class="token punctuation">(</span>A<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">8</span>
-  
-#成员函数不放内存
-class A<span class="token punctuation">&#123;</span>
-<span class="token keyword">int</span> x<span class="token punctuation">;</span>
-<span class="token keyword">int</span> y <span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">int</span> t<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">sizeof</span><span class="token punctuation">(</span>A<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">8</span>
-  
-#不管几个虚函数函数放内存，多个<span class="token keyword">sizeof</span>相同
-class A<span class="token punctuation">&#123;</span>
-<span class="token keyword">int</span> x<span class="token punctuation">;</span>
-<span class="token keyword">int</span> y <span class="token punctuation">;</span>
-virtual <span class="token keyword">void</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">int</span> t<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">sizeof</span><span class="token punctuation">(</span>A<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">12</span>
-#其中<span class="token number">4</span>个字节为vtable指向虚函数的表
-#虚函数跳转表被所有相同的嘞所共享<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">class WMachine<span class="token punctuation">&#123;</span>
-<span class="token function">clashwash</span><span class="token punctuation">(</span>WMachine <span class="token operator">*</span>m<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-m<span class="token operator">-></span><span class="token function">wash</span><span class="token punctuation">(</span>衣服<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-ManueWmachine 继承 Wmachine
-<span class="token punctuation">&#123;</span>
-  <span class="token function">Wash</span><span class="token punctuation">(</span><span class="token punctuation">)</span>#重写
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>虚函数表的在多态的跳转</p>
-<p>特别频繁调用不要用虚函数，查表的时间开销</p>
-<h2 id="Linux虚拟内存管理"><a href="#Linux虚拟内存管理" class="headerlink" title="Linux虚拟内存管理"></a>Linux虚拟内存管理</h2><p>查表：硬件</p>
-<p>初始化表&#x2F;缺页中断：操作系统</p>
-<p>虚拟内存管理：A芯片不可，安卓可以</p>
-<p>作用：主要作用：让每一个进程拥有自己独立的内存空间</p>
-<p>​            次要作用：扩展空间</p>
-<p>虚拟内存地址，不同进程互不影响，是虚拟的空间</p>
-<p>宏内核：占用空间大，速度快</p>
-<p>微内核：占用空间小，速度慢</p>
-<p>每一个进程有一个虚拟地址的表，切换进程也在切换表</p>
-<h2 id="C程序运行时的内存布局"><a href="#C程序运行时的内存布局" class="headerlink" title="C程序运行时的内存布局"></a>C程序运行时的内存布局</h2><p>栈区：函数变量，上往下</p>
-<p>。。(动态库映射区) 区域大得狠</p>
-<p>堆区：malloc&#x2F;free内存放在堆区，下往上</p>
-<p>静态数据区：有已初始化和未初始化</p>
-<p>常量数据区 带双引号放入 const</p>
-<p>代码区：编译的代码</p>
-<p>栈区和堆区不能碰面否则有数据泄露</p>
-<p>每一个区有一个权限</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token keyword">char</span> <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token string">"hello world!"</span>
-p<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'H'</span>
-<span class="token keyword">return</span> <span class="token number">0</span>
-<span class="token punctuation">&#125;</span>
-#会报错<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="栈区的调用"><a href="#栈区的调用" class="headerlink" title="栈区的调用"></a>栈区的调用</h3><p>包含的函数：局部变量和函数的形参</p>
-<h4 id="进程栈和系统栈"><a href="#进程栈和系统栈" class="headerlink" title="进程栈和系统栈"></a>进程栈和系统栈</h4><p>系统栈由编译器管理</p>
-<h4 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h4><p>push op</p>
-<p>pop op</p>
-<p>cal Labell</p>
-<p>cal op</p>
-<p>ret</p>
-<p>函数的参数都放在内存地址的正偏移</p>
-<p>函数的实参都放在内存地址的负偏移</p>
-<p>可以利用栈来快速分配内存</p>
-<h3 id="静态链接库和动态链接库"><a href="#静态链接库和动态链接库" class="headerlink" title="静态链接库和动态链接库"></a>静态链接库和动态链接库</h3><p>静态库占内存几份引用几份拷贝</p>
-<p>动态库装地址后映射内存空间，在动态库中</p>
-<h2 id="main不是最先执行的函数"><a href="#main不是最先执行的函数" class="headerlink" title="main不是最先执行的函数"></a>main不是最先执行的函数</h2><p>扩展关键字的作用：</p>
-<p>​    1）如果程序异常退出，after还是会执行</p>
-<h2 id="main执行完后程序就结束？"><a href="#main执行完后程序就结束？" class="headerlink" title="main执行完后程序就结束？"></a>main执行完后程序就结束？</h2><p>进程结束后有一个退出函数链表</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token function">atexit</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span>
-<span class="token keyword">return</span> <span class="token number">0</span>
-<span class="token punctuation">&#125;</span>
-#挂载了函数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="变量的生存期"><a href="#变量的生存期" class="headerlink" title="变量的生存期"></a>变量的生存期</h2><h3 id="静态生存期"><a href="#静态生存期" class="headerlink" title="静态生存期"></a>静态生存期</h3><h3 id="自动生存期"><a href="#自动生存期" class="headerlink" title="自动生存期"></a>自动生存期</h3><h3 id="动态生存期"><a href="#动态生存期" class="headerlink" title="动态生存期"></a>动态生存期</h3><h3 id="register"><a href="#register" class="headerlink" title="register"></a>register</h3><h3 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> flag
-<span class="token keyword">void</span> <span class="token function">onInterupt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-flag <span class="token operator">=</span> <span class="token number">0</span>
-<span class="token punctuation">&#125;</span>
-voide <span class="token function">thread1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-flag <span class="token operator">=</span> <span class="token number">1</span>
-<span class="token keyword">while</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-	这个flag不改变，由于编译器直接从寄存器中提取
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">volatile</span> 让<span class="token operator">*</span>p的时候都去内存去一次<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="关于静态数据区"><a href="#关于静态数据区" class="headerlink" title="关于静态数据区"></a>关于静态数据区</h2><p>1）全局变量整个运行过程地址都不会改变</p>
-<p>2）对于所欲未初始化全局变量仅计数</p>
-<h2 id="C程序的静态布局（ELF文件结构）"><a href="#C程序的静态布局（ELF文件结构）" class="headerlink" title="C程序的静态布局（ELF文件结构）"></a>C程序的静态布局（ELF文件结构）</h2><p>1、Linux中可执行文件遵循ELF文件格式</p>
-<p>2、ELF文件中包含很多节</p>
-<p>-code或。text节 编译后的机器代码</p>
-<p>data节 已初始化的全局变量</p>
-<p>bss节 未初始化的全局变量和静态局部变量</p>
-<p>rodata节 常量</p>
-<p>malloc的划分，4096一根内存页，不要4097</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">cat &#x2F;proc&#x2F;4754&#x2F;maps<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="call和goto，call返回原命令下一条，goto不跳回"><a href="#call和goto，call返回原命令下一条，goto不跳回" class="headerlink" title="call和goto，call返回原命令下一条，goto不跳回"></a>call和goto，call返回原命令下一条，goto不跳回</h3><p>traaceback追踪调用栈</p>
-<h3 id="堆内存："><a href="#堆内存：" class="headerlink" title="堆内存："></a>堆内存：</h3><p>1、需要时主动申请</p>
-<p>2、堆内存在程序主动放弃之前一直保持有效</p>
-<p>3、占据了进程地址绝大部分的空间</p>
-<p>3、有c运行的环境管理，管理方法：批发-》零售</p>
-<p>libc.so动态库</p>
-<p>libc.a静态库</p>
-<h3 id="堆区的管理"><a href="#堆区的管理" class="headerlink" title="堆区的管理"></a>堆区的管理</h3><p>采用批发零售的思想</p>
-<p>虚拟内存来对一个程序进行批发，程序对批发的虚拟空间来进行分配采用的是空闲链表法</p>
-<h4 id="空闲链表发"><a href="#空闲链表发" class="headerlink" title="空闲链表发"></a>空闲链表发</h4><h4 id="位图分配法"><a href="#位图分配法" class="headerlink" title="位图分配法"></a>位图分配法</h4><p>整个堆分配为大量的块，多少个快，多少个bit的位图</p>
-<p>堆区分配不同一个单元2bit11表示head 10表示body 00表示空闲</p>
-<h4 id="对象池（后面还会提及）"><a href="#对象池（后面还会提及）" class="headerlink" title="对象池（后面还会提及）"></a>对象池（后面还会提及）</h4><p>当频繁动态申请大量空间的时候可以采用</p>
-<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>brk（addr）堆尾的调整</p>
-<p>sbrk（incr）brk增加或减少制定数值&#x2F;当堆区不够用时</p>
-<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>相关数据结构</p>
-<p>进程对应函数(PID)-》task-struct任务描述符号-&gt;内存空间</p>
-<p>task-struct：</p>
-<p>PID：记录ID号</p>
-<p>struck mm_struct *mm</p>
-<p>Mm_struct:用来描述虚拟空间布局</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">struct</span> <span class="token class-name">task_struct</span><span class="token punctuation">&#123;</span>
-<span class="token keyword">volatile</span> <span class="token keyword">long</span> state<span class="token punctuation">;</span>
-<span class="token keyword">long</span> conter<span class="token punctuation">;</span> 	<span class="token comment">//每来一个时钟中断，让count--1，所以COUNTER为时间片</span>
-<span class="token keyword">long</span> priority<span class="token punctuation">;</span>
-<span class="token keyword">struct</span> <span class="token class-name">fs_struct</span> <span class="token operator">*</span>fs<span class="token punctuation">;</span>
-<span class="token keyword">struct</span> <span class="token class-name">files_struct</span> <span class="token operator">*</span>file<span class="token punctuation">;</span>
-<span class="token keyword">struct</span> <span class="token class-name">struct_mm</span> <span class="token operator">*</span>mm
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>内核喜欢用unsigned来记录一个指针，有利于进行加减运算</p>
-<p>栈区可以利用start_stack-env_star-arg-start</p>
-<h2 id="内核"><a href="#内核" class="headerlink" title="内核"></a>内核</h2><h3 id="子系统"><a href="#子系统" class="headerlink" title="子系统"></a>子系统</h3><h3 id="IO-subsystem"><a href="#IO-subsystem" class="headerlink" title="IO subsystem"></a>IO subsystem</h3><p>virtual file system(如何实现一个容器)</p>
-<h3 id="Memory-management-subsystem"><a href="#Memory-management-subsystem" class="headerlink" title="Memory management subsystem"></a>Memory management subsystem</h3><h3 id="Process-management-subsystem"><a href="#Process-management-subsystem" class="headerlink" title="Process management subsystem"></a>Process management subsystem</h3><h4 id="模块-module"><a href="#模块-module" class="headerlink" title="模块(module)"></a>模块(module)</h4><h3 id="Linux虚拟内核内存管理系统"><a href="#Linux虚拟内核内存管理系统" class="headerlink" title="Linux虚拟内核内存管理系统"></a>Linux虚拟内核内存管理系统</h3><p>主要为32位系统（不过时）</p>
-<h4 id="主要功能："><a href="#主要功能：" class="headerlink" title="主要功能："></a>主要功能：</h4><p>1、内存模拟外存，当物理内存不够4gb，虚拟利用外存来模拟内存</p>
-<p>2、主要功能为每一个进程提供一个独立的内存地址空间，让你的系统更加安全合理</p>
-<h3 id="用户地址空间和内核地址空间"><a href="#用户地址空间和内核地址空间" class="headerlink" title="用户地址空间和内核地址空间"></a>用户地址空间和内核地址空间</h3><p>1、操作系统内核代码和数据存放在内核地址空间；每个进程自己私有的代码和数据存放在用户地址空间</p>
-<p>2、Linux将每个进程的4GB的独立地址空间又划分为用户地址空间(0x00000000 ~ 0xBFFFFFFF)和        内核地址空间(0xC0000000 ~ 0xFFFFFFFF)两部分</p>
-<p>3、虽然Linux的内核代码和数据被映射到了每个进程的地址空间中（所有进程看到的内容是相同的），但在实际的物理内存中，只有内核代码和数据的一份拷贝。</p>
-<p>大内核把操作系统函数映射到独立空间</p>
-<p>优点：调用效率高&#x2F;安全</p>
-<p>缺点：占用空间大</p>
-<p>微内核：</p>
-<p>优点：健壮</p>
-<p>缺点：效率低</p>
-<h4 id="凤凰构架："><a href="#凤凰构架：" class="headerlink" title="凤凰构架："></a>凤凰构架：</h4><p>两个模块靠链接器到一个进程中</p>
-<p>微服务：一个进程只跑一个模块，两个模块利用进程间调用来进行调用，利用你socket编程进行来进行进程间通信，设置每一个字节，现在利用http协议进行接口：soap（xml）来封装，restfukl来进行轻量级。http可扩展性好。把一个模块放到另一个模块上实现了分布式。</p>
-<p>容器技术，例如一个网站24小时使用，挂了以后往常需要重启，凤凰构架将每一个模块看作一个容器</p>
-<p>用一个监控程序，当服务挂了直接进行重启这个模块&#x2F;微服务</p>
-<p>容器技术：为期独立生存一个运行环境</p>
-<h4 id="各种地址"><a href="#各种地址" class="headerlink" title="各种地址"></a>各种地址</h4><h5 id="逻辑地址"><a href="#逻辑地址" class="headerlink" title="逻辑地址"></a>逻辑地址</h5><p>程序在运行过程中用来访问存储器的地址。程序员在编程时，只需知道逻辑地址，不需考虑该地址与实际物理硬件上的存储单元如何对应。编译器在编译源程序时，也只需考虑逻辑地址</p>
-<h5 id="物理地址"><a href="#物理地址" class="headerlink" title="物理地址"></a>物理地址</h5><p>表示物理存储器中一个存储单元的实际位置，地址总线上产生的就是物理地址。（总线地址）地址总线上内容严格对应</p>
-<h5 id="虚拟地址"><a href="#虚拟地址" class="headerlink" title="虚拟地址"></a>虚拟地址</h5><p>在实地址模式下，逻辑地址等于物理地址。在虚拟地址模式下，逻辑地址不等于物理地址，必须经过查表才能转换为物理地址，去操作数来进行计算</p>
-<h5 id="线性地址："><a href="#线性地址：" class="headerlink" title="线性地址："></a>线性地址：</h5><p>2维逻辑地址变为1维地址后，叫线性地址</p>
-<h5 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h5><p>虚拟地址（逻辑地址）利用MMU单元-》查表-〉物理地址</p>
-<p>哪里去查表？</p>
-<p>表在内存操作系统来进行填表利用物理地址来填表，cpu cr3进行查映射表</p>
-<h5 id="映射表如何设计："><a href="#映射表如何设计：" class="headerlink" title="映射表如何设计："></a>映射表如何设计：</h5><p>映射表两列，第一列虚拟地址。第二列物理地址</p>
-<p>大小为2的32次方行，每一行8个字节64bit</p>
-<p>当第一列为有序的时候，用下标来进行获取物理地址数</p>
-<h5 id="算奇偶校验的时候：利用查表法一次访问一个表来获取异或的数据。"><a href="#算奇偶校验的时候：利用查表法一次访问一个表来获取异或的数据。" class="headerlink" title="算奇偶校验的时候：利用查表法一次访问一个表来获取异或的数据。"></a>算奇偶校验的时候：利用查表法一次访问一个表来获取异或的数据。</h5><h5 id="元编程：一个最小单元来进行为其他编程服务"><a href="#元编程：一个最小单元来进行为其他编程服务" class="headerlink" title="元编程：一个最小单元来进行为其他编程服务"></a>元编程：一个最小单元来进行为其他编程服务</h5><h5 id="按页映射："><a href="#按页映射：" class="headerlink" title="按页映射："></a>按页映射：</h5><p>每个进程都有独立的页表</p>
-<p>进程切换的过程中也带来了，操作系统共享一个页表示</p>
-<p>利用虚拟空间4GB，等大小划分一个页为2的12次方，进行按页映射</p>
-<p>即物理页和虚页号的映射在表中，一共有2的20次方行，需要4个字节，多的字节需要作为标志位</p>
-<h3 id="共享内存"><a href="#共享内存" class="headerlink" title="共享内存"></a>共享内存</h3><h3 id="分别编译技术与链接"><a href="#分别编译技术与链接" class="headerlink" title="分别编译技术与链接"></a>分别编译技术与链接</h3><p>动态库：只是简单的页面映射</p>
-<p>静态库：复制一份</p>
-<h3 id="X86处理器对VM的支持"><a href="#X86处理器对VM的支持" class="headerlink" title="X86处理器对VM的支持"></a>X86处理器对VM的支持</h3><p>1、MMU单元</p>
-<p>2、32bit cpu支持2级页表</p>
-<p>3、64bit支持4级页表</p>
-<p>4、专用寄存器CR3 有效页目录表物理地址</p>
-<p>5、专用寄存器CR2 缺页异常的线性地址</p>
-<p>6、TLB缓冲区：CPU将虚拟地址转换为物理地址</p>
-<h4 id="1、减少了也表本身的内存占用大小"><a href="#1、减少了也表本身的内存占用大小" class="headerlink" title="1、减少了也表本身的内存占用大小"></a>1、减少了也表本身的内存占用大小</h4><h4 id="2、共享内存对应的二级页表"><a href="#2、共享内存对应的二级页表" class="headerlink" title="2、共享内存对应的二级页表"></a>2、共享内存对应的二级页表</h4><h4 id="3、写时拷贝"><a href="#3、写时拷贝" class="headerlink" title="3、写时拷贝"></a>3、写时拷贝</h4><p>用的时候进行1&#x2F;4页表的拷贝</p>
-<p>在需要时进行拷贝</p>
-<h5 id="反向映射问题"><a href="#反向映射问题" class="headerlink" title="反向映射问题"></a>反向映射问题</h5><p>如何区分，共享的成员</p>
-<h2 id="进程-1"><a href="#进程-1" class="headerlink" title="进程"></a>进程</h2><h3 id="可执行程序如何变为进程"><a href="#可执行程序如何变为进程" class="headerlink" title="可执行程序如何变为进程"></a>可执行程序如何变为进程</h3><p>对linux来说使用shell进程工具，触发一个装载器</p>
-<h4 id="编程法创建进程，查系统调用"><a href="#编程法创建进程，查系统调用" class="headerlink" title="编程法创建进程，查系统调用"></a>编程法创建进程，查系统调用</h4><h4 id="fork函数"><a href="#fork函数" class="headerlink" title="fork函数"></a>fork函数</h4><p>以当前进程为模版进行，子父进程共享同一套代码。从fork之后重新执行，宏观同时进行，微观上分为单或多核，时间便轮转，所有都克隆。</p>
-<p>类似克隆，不是从头开始的</p>
-<h4 id="并发socket服务器"><a href="#并发socket服务器" class="headerlink" title="并发socket服务器"></a>并发socket服务器</h4><p>一个链接来到，父进程创建一个子进程来服务这个链接</p>
-<h4 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h4><p>线程共享进程内存的地址空间，每个线程有一个独立栈</p>
-<p>注意线程安全问题</p>
-<h5 id="在linux中引入轻量进程技术-》线程"><a href="#在linux中引入轻量进程技术-》线程" class="headerlink" title="在linux中引入轻量进程技术-》线程"></a>在linux中引入轻量进程技术-》线程</h5><p>内核中提供一个内核函数，内核修改EIP，ESP，EBP寄存器来实现线程</p>
-<p>线程库Pthread库，调用clone</p>
-<h5 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h5><p>在应用层的操作</p>
-<h3 id="虚拟内存区域VMA"><a href="#虚拟内存区域VMA" class="headerlink" title="虚拟内存区域VMA"></a>虚拟内存区域VMA</h3><p>内核为其创建一个结构体 vma_struct来记录原信息，linux将所有的VMA串成链表</p>
-<h3 id="线程局部存储TLS"><a href="#线程局部存储TLS" class="headerlink" title="线程局部存储TLS"></a>线程局部存储TLS</h3><p>创建半全局变量，线程存在半全局就存在，线程上下文绑定</p>
-<h3 id="轻量子进程"><a href="#轻量子进程" class="headerlink" title="轻量子进程"></a>轻量子进程</h3><p>和父进程共享同一个页表，但是寄存器不同(亲儿子)，父进程消失，轻量子进程也消失了，普通子进程不消失，内部空间拷贝了一份</p>
-<h3 id="进程描述符"><a href="#进程描述符" class="headerlink" title="进程描述符"></a>进程描述符</h3><p>使用了SLAB分配器</p>
-<h4 id="SLAB分配器"><a href="#SLAB分配器" class="headerlink" title="SLAB分配器"></a>SLAB分配器</h4><p>频繁使用和创建的对象大小相同，使用以链表为结构的分配模式，用free指针指向空白对象</p>
-<p>当所有空间被用完，创建第二个4kb</p>
-<h3 id="进程信号处理函数分发表"><a href="#进程信号处理函数分发表" class="headerlink" title="进程信号处理函数分发表"></a>进程信号处理函数分发表</h3><h3 id="如何判断呢一个PID是不是空闲的呢？"><a href="#如何判断呢一个PID是不是空闲的呢？" class="headerlink" title="如何判断呢一个PID是不是空闲的呢？"></a>如何判断呢一个PID是不是空闲的呢？</h3><p>定义一个pidmap_array位图，pidmap_array</p>
-<p>包含32768个位，刚好放进一个页框，有用就是为零</p>
-<h4 id="如何利用pid找他的task-struct"><a href="#如何利用pid找他的task-struct" class="headerlink" title="如何利用pid找他的task_struct"></a>如何利用pid找他的task_struct</h4><p>linux采用hash表来记录数据</p>
-<p>i &#x3D; HASH(PID)%2046</p>
-<p>hash冲突问题，为效率不用hash</p>
-<p>负载均衡时采用hash函数</p>
-<h4 id="0号进程，可以理解为一个内核态"><a href="#0号进程，可以理解为一个内核态" class="headerlink" title="0号进程，可以理解为一个内核态"></a>0号进程，可以理解为一个内核态</h4><p>是c语言的一个全局变量</p>
-<h4 id="init进程"><a href="#init进程" class="headerlink" title="init进程"></a>init进程</h4><p>收割孤儿进程，上升为init进程，利用进程间的父子关系，来实现查找pid和task_sturct</p>
-<h3 id="Exec函数："><a href="#Exec函数：" class="headerlink" title="Exec函数："></a>Exec函数：</h3><p>用于创建一个新的进程，新进程以另一个可执行程序为执行脚本。</p>
-<p>执行后进程就消失了</p>
-<p>#include&lt;unistd.h&gt;</p>
-<p>int excel(const char <em>path ,const char</em>arg)</p>
-<p>会覆盖当前程序</p>
-<h3 id="Shell-程序："><a href="#Shell-程序：" class="headerlink" title="Shell 程序："></a>Shell 程序：</h3><p>如果用户输入的字符串和我中有合法命令，那么我就去我的目录下面去fork这个可执行文件</p>
-<h3 id="Clone函数："><a href="#Clone函数：" class="headerlink" title="Clone函数："></a>Clone函数：</h3><p>提供更大的灵活性</p>
-<p>可以选择性的继承父进程的资源，可以选择vfork一个和父进程共享一样的虚存空间，也可以不和父进程共享一个虚存，成为兄弟进程，和fork不同</p>
-<p>可以为新的进程置顶EIP的值</p>
-<h3 id="Docker容器-轻量虚拟机-vs-普通虚拟机"><a href="#Docker容器-轻量虚拟机-vs-普通虚拟机" class="headerlink" title="Docker容器(轻量虚拟机) vs 普通虚拟机"></a>Docker容器(轻量虚拟机) vs 普通虚拟机</h3><h5 id="Docker的三大技术"><a href="#Docker的三大技术" class="headerlink" title="Docker的三大技术"></a>Docker的三大技术</h5><p>Namespce技术：每一个docker有一个temp文件，进行对应的调整就是不同的docker容器看到的东西不一样</p>
-<p>CGroup，对共享资源进行隔离</p>
-<p>UnionFS</p>
-<p>Win10制造了一个WSL来跑docker</p>
-<p>wait（僵尸态）</p>
-</div></article><nav id="pagination"><div class="pagination"></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By wenjiawei</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
-  $('#nav').addClass('is-mobile')
-  $('footer').addClass('is-mobile')
-  $('#top-container').addClass('is-mobile')
-}</script></body></html>
+.recent-post-item {
+  margin: 1.6rem 0 2rem;
+}
+.recent-post-item .content {
+  margin-top: 0.5rem;
+}
+.recent-post-item .content p {
+  word-break: break-word;
+}
+.recent-post-item .content iframe {
+  width: $content-width;
+  height: $iframe-height;
+}
+.recent-post-item .article-type {
+  margin-left: 0.3rem;
+  color: $grey;
+}
+.recent-post-item .article-meta {
+  color: $grey;
+}
+.recent-post-item .article-meta .sticky {
+  color: $theme-button-hover-color;
+}
+.recent-post-item .article-meta i {
+  margin: 0 0.2rem 0 0.3rem;
+}
+.recent-post-item .article-meta__separator {
+  margin-left: 0.3rem;
+}
+.recent-post-item .article-meta .fa-angle-right,
+.recent-post-item .article-meta__link {
+  margin: 0 0 0 0.3rem;
+}
+.recent-post-item time {
+  color: $grey;
+}
+.recent-post-item .more {
+  display: inline-block;
+  padding: 0 0.6rem;
+  height: 1.6rem;
+  background: $light-blue;
+  color: $white;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.6rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.recent-post-item .more:hover {
+  background: $ruby;
+}
+.recent-post-item .article-title {
+  display: block;
+  margin-bottom: 0.3rem;
+  border-bottom: 1px solid $light-grey;
+  color: $black;
+  text-decoration: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.recent-post-item .article-title:hover {
+  border-bottom: 1px solid $light-blue;
+  color: $light-blue;
+}
+.tag-cloud {
+  padding: 4.5rem 0 7rem;
+  text-align: center;
+}
+.tag-cloud a {
+  display: inline-block;
+  margin: 0 0.4rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.tag-cloud a:hover {
+  color: $ruby !important;
+}
+.tag-cloud__title {
+  font-size: 1.8rem;
+}
+#tag,
+#category,
+#archive {
+  padding: 3rem 0 3rem;
+}
+.article-sort {
+  padding-left: 1rem;
+  border-left: 0.1rem solid $pale-blue;
+}
+.article-sort-title {
+  position: relative;
+  padding-bottom: 1.2rem;
+  padding-left: 1rem;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.article-sort-title:hover:before {
+  border-color: $ruby;
+}
+.article-sort-title:before {
+  position: absolute;
+  top: 0.25rem;
+  left: calc(-0.5rem + 1px);
+  z-index: 1;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 0.25rem solid $light-blue;
+  border-radius: 0.5rem;
+  background: $white;
+  content: "";
+  line-height: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+.article-sort-title:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  width: 0.1rem;
+  height: 1.3rem;
+  background: $pale-blue;
+  content: "";
+}
+.article-sort-item {
+  position: relative;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+.article-sort-item:hover:before {
+  border-color: $ruby;
+}
+.article-sort-item:before {
+  position: absolute;
+  top: 0.48rem;
+  left: calc(-1rem - 7px);
+  width: 0.3rem;
+  height: 0.3rem;
+  border: 0.15rem solid $light-blue;
+  border-radius: 0.3rem;
+  background: $white;
+  content: "";
+  line-height: 0.3rem;
+  transition: all 0.2s ease-in-out;
+}
+.article-sort-item.year {
+  font-size: 1rem;
+}
+.article-sort-item.year:hover:before {
+  border-color: $light-blue;
+}
+.article-sort-item.year:before {
+  top: 0.7rem;
+  border-color: $ruby;
+}
+.article-sort-item__time {
+  position: absolute;
+  top: 0.1rem;
+  color: $a-link-color;
+}
+.article-sort-item__title {
+  display: block;
+  margin-left: 5rem;
+  color: $font-black;
+  text-decoration: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.category-lists {
+  padding: 3rem 0 3rem;
+}
+.category-lists .category__title {
+  text-align: center;
+  font-size: 1.8rem;
+}
+.category-list a {
+  color: $font-black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.category-list .category-list-count {
+  margin-left: 0.4rem;
+  color: $a-link-color;
+}
+.category-list .category-list-count:before {
+  content: "(";
+}
+.category-list .category-list-count:after {
+  content: ")";
+}
+.gallery-item {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0.4rem;
+  width: 6rem;
+  height: 6rem;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.gallery-item__title {
+  position: absolute;
+  overflow: hidden;
+  padding: 0 0.4rem;
+  width: 100%;
+  height: 1.5rem;
+  background: rgba(0,0,0,0.5);
+  color: $pale-blue;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.5rem;
+  transition: 0.2s ease-in-out;
+  transform: translate3d(0, 6rem, 0);
+}
+.gallery-item:hover .gallery-item__title {
+  transform: translate3d(0, 4.5rem, 0);
+}
+@media screen and (max-width: $sm) {
+  .recent-post-item .article-title {
+    font-size: 1rem;
+  }
+  .recent-post-item .article-meta.tags {
+    display: none;
+  }
+  .gallery-item {
+    width: calc(50% - 22px);
+    height: 6rem;
+  }
+  .gallery-item__title {
+    transform: translate3d(0, 6rem, 0);
+  }
+  .gallery-item:hover .gallery-item__title {
+    transform: translate3d(0, 4.5rem, 0);
+  }
+}
+@media screen and (min-width: $md) {
+  .gallery-item {
+    width: 8rem;
+    height: 8rem;
+  }
+  .gallery-item__title {
+    transform: translate3d(0, 8rem, 0);
+  }
+  .gallery-item:hover .gallery-item__title {
+    transform: translate3d(0, 6.5rem, 0);
+  }
+}

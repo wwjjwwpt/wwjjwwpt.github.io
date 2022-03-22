@@ -1,78 +1,252 @@
-<!DOCTYPE html><html lang="cn"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content=""><meta name="keywords" content=""><meta name="author" content="wenjiawei"><meta name="copyright" content="wenjiawei"><title>wenwenzi's notebook</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  copy: {
-    success: 'Copy successfully',
-    error: 'Copy error',
-    noSupport: 'The browser does not support'
-  },
-  hexoVersion: '5.4.1'
-} </script><meta name="generator" content="Hexo 5.4.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">wenjiawei</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">1</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">wenwenzi's notebook</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right"></span></div><div id="site-info"><div id="site-title">wenwenzi's notebook</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><article id="page"><h1></h1><div class="article-container"><p>title: 算法小抄笔记<br>date: 2022-03-10 17:58:14<br>tags:</p>
-<h1 id="算法小抄笔记"><a href="#算法小抄笔记" class="headerlink" title="算法小抄笔记"></a>算法小抄笔记</h1><h2 id="二分算法"><a href="#二分算法" class="headerlink" title="二分算法"></a>二分算法</h2><p>二分算法需要注意的有算法框架，框架细节，框架变形的方法，二分算法最重要的是要了解搜索区间的定义</p>
-<h3 id="算法框架"><a href="#算法框架" class="headerlink" title="算法框架"></a>算法框架</h3><h4 id="针对找到对应的Target"><a href="#针对找到对应的Target" class="headerlink" title="针对找到对应的Target"></a>针对找到对应的Target</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">binarySearch</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>target<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    left <span class="token punctuation">,</span> right <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        mid <span class="token operator">=</span> right <span class="token operator">+</span> <span class="token punctuation">(</span>right <span class="token operator">-</span> left<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span>
-        <span class="token keyword">if</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">:</span>
-            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-        <span class="token keyword">elif</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">></span>target<span class="token punctuation">:</span>
-            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-        <span class="token keyword">elif</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">&lt;</span>target<span class="token punctuation">:</span>
-            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-    <span class="token keyword">return</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="针对左右侧边界的二分搜索"><a href="#针对左右侧边界的二分搜索" class="headerlink" title="针对左右侧边界的二分搜索"></a>针对左右侧边界的二分搜索</h4><h5 id="有多个相同的target，我们寻找最左边界，利用的是左闭右开"><a href="#有多个相同的target，我们寻找最左边界，利用的是左闭右开" class="headerlink" title="有多个相同的target，我们寻找最左边界，利用的是左闭右开"></a>有多个相同的target，我们寻找最左边界，利用的是左闭右开</h5><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">left_bound</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>target<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
-    left<span class="token punctuation">,</span>right <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span><span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        mid <span class="token operator">=</span> <span class="token punctuation">(</span>left<span class="token operator">+</span>right<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span>
-        <span class="token comment">#当找到目标时左移动来寻找边界</span>
-        <span class="token keyword">if</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">:</span>right <span class="token operator">=</span> mid
-        <span class="token keyword">elif</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">&lt;</span>target<span class="token punctuation">:</span> left <span class="token operator">=</span> mid<span class="token operator">+</span><span class="token number">1</span>
-        <span class="token keyword">elif</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">></span>target<span class="token punctuation">:</span> right <span class="token operator">=</span> mid
-    <span class="token comment">#返回left或者right都是可以的，因为条件是</span>
-    <span class="token keyword">return</span> left<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h5 id="利用算法左右都闭，最左边界"><a href="#利用算法左右都闭，最左边界" class="headerlink" title="利用算法左右都闭，最左边界"></a>利用算法左右都闭，最左边界</h5><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">left_bound</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>target<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
-    left<span class="token punctuation">,</span>right <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span><span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>left<span class="token operator">&lt;=</span>right<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        mid <span class="token operator">=</span> <span class="token punctuation">(</span>left<span class="token operator">+</span>right<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span>
-        <span class="token comment">#当找到目标时左移动来寻找边界</span>
-        <span class="token keyword">if</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">:</span>right <span class="token operator">=</span> mid<span class="token operator">-</span><span class="token number">1</span>
-        <span class="token keyword">elif</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">&lt;</span>target<span class="token punctuation">:</span> left <span class="token operator">=</span> mid<span class="token operator">+</span><span class="token number">1</span>
-        <span class="token keyword">elif</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">></span>target<span class="token punctuation">:</span> right <span class="token operator">=</span> mid<span class="token operator">-</span><span class="token number">1</span>
-    <span class="token comment">#返回left或者right都是可以的，因为条件是</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>left<span class="token operator">>=</span><span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token keyword">or</span> num<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token operator">!=</span>target<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
-    <span class="token keyword">return</span> left<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h5 id="利用算法左右都闭，最右边界搜索"><a href="#利用算法左右都闭，最右边界搜索" class="headerlink" title="利用算法左右都闭，最右边界搜索"></a>利用算法左右都闭，最右边界搜索</h5><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">right_bound</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>target<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
-    left<span class="token punctuation">,</span>right <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span><span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>left<span class="token operator">&lt;=</span>right<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        mid <span class="token operator">=</span> <span class="token punctuation">(</span>left<span class="token operator">+</span>right<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span>
-        <span class="token comment">#当找到目标时移动来寻找边界</span>
-        <span class="token keyword">if</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">:</span>left <span class="token operator">=</span> mid<span class="token operator">+</span><span class="token number">1</span>
-        <span class="token keyword">elif</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">&lt;</span>target<span class="token punctuation">:</span> left <span class="token operator">=</span> mid<span class="token operator">+</span><span class="token number">1</span>
-        <span class="token keyword">elif</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">></span>target<span class="token punctuation">:</span> right <span class="token operator">=</span> mid<span class="token operator">-</span><span class="token number">1</span>
-    <span class="token comment">#返回left或者right都是可以的，因为条件是</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>right<span class="token operator">&lt;</span><span class="token number">0</span> <span class="token keyword">or</span> num<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token operator">!=</span>target<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
-    <span class="token keyword">return</span> right<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="算法框架细节"><a href="#算法框架细节" class="headerlink" title="算法框架细节"></a>算法框架细节</h3><h4 id="难点一、while循环的条件是-lt-x3D-，而不是-lt"><a href="#难点一、while循环的条件是-lt-x3D-，而不是-lt" class="headerlink" title="难点一、while循环的条件是&lt;&#x3D;，而不是&lt;"></a>难点一、while循环的条件是&lt;&#x3D;，而不是&lt;</h4><p>依据的是搜索区间如果两端都是闭区间[left,right]为&lt;&#x3D;,如果左闭右开[left,right)]为&lt;。</p>
-<h4 id="难点二、区间二分变化的方法"><a href="#难点二、区间二分变化的方法" class="headerlink" title="难点二、区间二分变化的方法"></a>难点二、区间二分变化的方法</h4><p>right和left变化要根据区间的闭开关系，如果区间都是闭：</p>
-<p>right &#x3D; mid-1；left &#x3D; mid+1 : [left,mid-1],[mid+1,right]</p>
-<p>right &#x3D; mid left &#x3D; mid+1: [left,mid) [mid+1,right)</p>
-<h4 id="难点三、左右边界搜索时的方法"><a href="#难点三、左右边界搜索时的方法" class="headerlink" title="难点三、左右边界搜索时的方法"></a>难点三、左右边界搜索时的方法</h4><p>在二分找到target的时候，我们为了搜索左边界：right &#x3D; mid-1，搜索右边界 left &#x3D; mid+1</p>
-<h4 id="难点四、返回值的确定"><a href="#难点四、返回值的确定" class="headerlink" title="难点四、返回值的确定"></a>难点四、返回值的确定</h4><h5 id="最左边界"><a href="#最左边界" class="headerlink" title="最左边界"></a>最左边界</h5><p>在返回边界的时候要进行越界判断，当出现target比所有数组中的数字都大的情况，left会出现越界的情况。返回的是left是因为，当nums[mid]&#x3D;&#x3D;target的时候，right &#x3D; mid-1到下一个位置，因此当退出循环的时候，left &#x3D; right+1，就到了最左的为一个和target相同的位置</p>
-<h5 id="最右边界"><a href="#最右边界" class="headerlink" title="最右边界"></a>最右边界</h5><p>在返回边界的时候判断，taget比所有数组都小，则right会出界，返回right是因为，左边界搜索的时候，left &#x3D; right+1，right就是相等时的值</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>1、首先确定左右的搜索边界的开闭性，我们统一使用闭区间</p>
-<p>2、闭区间while（&lt;&#x3D;）</p>
-<p>3、区间缩小的时候nums[m]&#x3D;&#x3D;target的相等的时候，左边界right &#x3D; mid-1，右边界left &#x3D; mid+1</p>
-<p>4、左右边界问题的返回值就是对应的left和right</p>
-</div></article><nav id="pagination"><div class="pagination"></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By wenjiawei</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
-  $('#nav').addClass('is-mobile')
-  $('footer').addClass('is-mobile')
-  $('#top-container').addClass('is-mobile')
-}</script></body></html>
+.recent-post-item {
+  margin: 1.6rem 0 2rem;
+}
+.recent-post-item .content {
+  margin-top: 0.5rem;
+}
+.recent-post-item .content p {
+  word-break: break-word;
+}
+.recent-post-item .content iframe {
+  width: $content-width;
+  height: $iframe-height;
+}
+.recent-post-item .article-type {
+  margin-left: 0.3rem;
+  color: $grey;
+}
+.recent-post-item .article-meta {
+  color: $grey;
+}
+.recent-post-item .article-meta .sticky {
+  color: $theme-button-hover-color;
+}
+.recent-post-item .article-meta i {
+  margin: 0 0.2rem 0 0.3rem;
+}
+.recent-post-item .article-meta__separator {
+  margin-left: 0.3rem;
+}
+.recent-post-item .article-meta .fa-angle-right,
+.recent-post-item .article-meta__link {
+  margin: 0 0 0 0.3rem;
+}
+.recent-post-item time {
+  color: $grey;
+}
+.recent-post-item .more {
+  display: inline-block;
+  padding: 0 0.6rem;
+  height: 1.6rem;
+  background: $light-blue;
+  color: $white;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.6rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.recent-post-item .more:hover {
+  background: $ruby;
+}
+.recent-post-item .article-title {
+  display: block;
+  margin-bottom: 0.3rem;
+  border-bottom: 1px solid $light-grey;
+  color: $black;
+  text-decoration: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.recent-post-item .article-title:hover {
+  border-bottom: 1px solid $light-blue;
+  color: $light-blue;
+}
+.tag-cloud {
+  padding: 4.5rem 0 7rem;
+  text-align: center;
+}
+.tag-cloud a {
+  display: inline-block;
+  margin: 0 0.4rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.tag-cloud a:hover {
+  color: $ruby !important;
+}
+.tag-cloud__title {
+  font-size: 1.8rem;
+}
+#tag,
+#category,
+#archive {
+  padding: 3rem 0 3rem;
+}
+.article-sort {
+  padding-left: 1rem;
+  border-left: 0.1rem solid $pale-blue;
+}
+.article-sort-title {
+  position: relative;
+  padding-bottom: 1.2rem;
+  padding-left: 1rem;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.article-sort-title:hover:before {
+  border-color: $ruby;
+}
+.article-sort-title:before {
+  position: absolute;
+  top: 0.25rem;
+  left: calc(-0.5rem + 1px);
+  z-index: 1;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 0.25rem solid $light-blue;
+  border-radius: 0.5rem;
+  background: $white;
+  content: "";
+  line-height: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+.article-sort-title:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  width: 0.1rem;
+  height: 1.3rem;
+  background: $pale-blue;
+  content: "";
+}
+.article-sort-item {
+  position: relative;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+.article-sort-item:hover:before {
+  border-color: $ruby;
+}
+.article-sort-item:before {
+  position: absolute;
+  top: 0.48rem;
+  left: calc(-1rem - 7px);
+  width: 0.3rem;
+  height: 0.3rem;
+  border: 0.15rem solid $light-blue;
+  border-radius: 0.3rem;
+  background: $white;
+  content: "";
+  line-height: 0.3rem;
+  transition: all 0.2s ease-in-out;
+}
+.article-sort-item.year {
+  font-size: 1rem;
+}
+.article-sort-item.year:hover:before {
+  border-color: $light-blue;
+}
+.article-sort-item.year:before {
+  top: 0.7rem;
+  border-color: $ruby;
+}
+.article-sort-item__time {
+  position: absolute;
+  top: 0.1rem;
+  color: $a-link-color;
+}
+.article-sort-item__title {
+  display: block;
+  margin-left: 5rem;
+  color: $font-black;
+  text-decoration: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.category-lists {
+  padding: 3rem 0 3rem;
+}
+.category-lists .category__title {
+  text-align: center;
+  font-size: 1.8rem;
+}
+.category-list a {
+  color: $font-black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.category-list .category-list-count {
+  margin-left: 0.4rem;
+  color: $a-link-color;
+}
+.category-list .category-list-count:before {
+  content: "(";
+}
+.category-list .category-list-count:after {
+  content: ")";
+}
+.gallery-item {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0.4rem;
+  width: 6rem;
+  height: 6rem;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.gallery-item__title {
+  position: absolute;
+  overflow: hidden;
+  padding: 0 0.4rem;
+  width: 100%;
+  height: 1.5rem;
+  background: rgba(0,0,0,0.5);
+  color: $pale-blue;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.5rem;
+  transition: 0.2s ease-in-out;
+  transform: translate3d(0, 6rem, 0);
+}
+.gallery-item:hover .gallery-item__title {
+  transform: translate3d(0, 4.5rem, 0);
+}
+@media screen and (max-width: $sm) {
+  .recent-post-item .article-title {
+    font-size: 1rem;
+  }
+  .recent-post-item .article-meta.tags {
+    display: none;
+  }
+  .gallery-item {
+    width: calc(50% - 22px);
+    height: 6rem;
+  }
+  .gallery-item__title {
+    transform: translate3d(0, 6rem, 0);
+  }
+  .gallery-item:hover .gallery-item__title {
+    transform: translate3d(0, 4.5rem, 0);
+  }
+}
+@media screen and (min-width: $md) {
+  .gallery-item {
+    width: 8rem;
+    height: 8rem;
+  }
+  .gallery-item__title {
+    transform: translate3d(0, 8rem, 0);
+  }
+  .gallery-item:hover .gallery-item__title {
+    transform: translate3d(0, 6.5rem, 0);
+  }
+}

@@ -8,7 +8,148 @@
     noSupport: 'The browser does not support'
   },
   hexoVersion: '5.4.1'
-} </script><meta name="generator" content="Hexo 5.4.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">wenjiawei</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">1</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">wenwenzi's notebook</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right"></span></div><div id="site-info"><div id="site-title">wenwenzi's notebook</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2022/03/10/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%8A%84%E7%AC%94%E8%AE%B0/">算法小抄笔记</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-03-10</time><div class="content"><h1 id="算法小抄笔记"><a href="#算法小抄笔记" class="headerlink" title="算法小抄笔记"></a>算法小抄笔记</h1><h2 id="二分算法"><a href="#二分算法" class="headerlink" title="二分算法"></a>二分算法</h2><p>二分算法需要注意的有算法框架，框架细节，框架变形的方法，二分算法最重要的是要了解搜索区间的定义</p>
+} </script><meta name="generator" content="Hexo 5.4.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">wenjiawei</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">4</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">wenwenzi's notebook</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right"></span></div><div id="site-info"><div id="site-title">wenwenzi's notebook</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2022/03/22/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">No title</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-03-22</time><div class="content"><h1 id="自然语言处理"><a href="#自然语言处理" class="headerlink" title="自然语言处理"></a>自然语言处理</h1><h2 id="HMM-x2F-隐马尔可夫模型"><a href="#HMM-x2F-隐马尔可夫模型" class="headerlink" title="HMM&#x2F;隐马尔可夫模型"></a>HMM&#x2F;隐马尔可夫模型</h2><h3 id="马尔可夫模型"><a href="#马尔可夫模型" class="headerlink" title="马尔可夫模型"></a>马尔可夫模型</h3><h4 id="概念导入"><a href="#概念导入" class="headerlink" title="概念导入"></a>概念导入</h4><p>n阶马尔可夫模型的定义即一个状态是由n其他个状态确定的几位</p>
+<h3 id="隐马尔可夫模型"><a href="#隐马尔可夫模型" class="headerlink" title="隐马尔可夫模型"></a>隐马尔可夫模型</h3><p>存在一类重要的随机过程：如果一个系统有 N 个状态<img src="https://www.zhihu.com/equation?tex=S_1" alt="[公式]">,<img src="https://www.zhihu.com/equation?tex=S_2" alt="[公式]">,<img src="https://www.zhihu.com/equation?tex=S_3" alt="[公式]">..<img src="https://www.zhihu.com/equation?tex=S_N" alt="[公式]"> 随着时间的推移，该系统从某一状态转移到另一状态。如果用<img src="https://www.zhihu.com/equation?tex=q_t" alt="[公式]"> 表示系统在时间 t 的状态变量，那么 t 时刻的状态取值为<img src="https://www.zhihu.com/equation?tex=S_j" alt="[公式]">(1&lt;&#x3D;j&lt;&#x3D;N)的概率取决于前 t-1 个时刻(1, 2, …, t-1)的状态，该概率为：</p>
+<p><img src="https://www.zhihu.com/equation?tex=p%5Cleft(q_%7Bt%7D=S_%7Bj%7D+%7C+q_%7Bt-1%7D=S_%7Bi%7D,+q_%7Bt-2%7D=S_%7Bk%7D,+%5Ccdots%5Cright)+" alt="[公式]"></p>
+<ol>
+<li><strong>假设一：如果在特定情况下，系统在时间 t 的状态只与其在时间 t-1 的状态相关，则该系统构成一个离散的一阶马尔可夫链</strong>：</li>
+</ol>
+<p><img src="https://www.zhihu.com/equation?tex=p%5Cleft(q_%7Bt%7D=S_%7Bj%7D+%7C+q_%7Bt-1%7D=S_%7Bi%7D,+q_%7Bt-2%7D=S_%7Bk%7D,+%5Ccdots%5Cright)=p%5Cleft(q_%7Bt%7D=S_%7Bj%7D+%7C+q_%7Bt-1%7D=S_%7Bi%7D%5Cright)+" alt="[公式]"></p>
+<ol>
+<li>假设二：<strong>如果只考虑独立于时间 t 的随机过程，状态与时间无关，那么<img src="https://www.zhihu.com/equation?tex=p%5Cleft(q_%7Bt%7D=S_%7Bj%7D+%7C+q_%7Bt-1%7D=S_%7Bi%7D%5Cright)=a_%7Bi+j%7D,+%5Cquad+1+%5Cleq+i,+j+%5Cleq+N+" alt="[公式]"> 即：t 时刻状态的概率取决于前 t-1 个时刻(1, 2, …, t-1)的状态,且状态的转换与时间无关，则</strong>该随机过程<strong>就是</strong>马尔可夫模型**。</li>
+</ol>
+<h4 id="概念导入-1"><a href="#概念导入-1" class="headerlink" title="概念导入"></a>概念导入</h4><h4 id="HMM的组成"><a href="#HMM的组成" class="headerlink" title="HMM的组成"></a>HMM的组成</h4><h4 id="三个问题"><a href="#三个问题" class="headerlink" title="三个问题"></a>三个问题</h4><h4 id="前向算法"><a href="#前向算法" class="headerlink" title="前向算法"></a>前向算法</h4><h4 id="后向算法"><a href="#后向算法" class="headerlink" title="后向算法"></a>后向算法</h4><h4 id="Viterbi-搜索算法"><a href="#Viterbi-搜索算法" class="headerlink" title="Viterbi 搜索算法"></a>Viterbi 搜索算法</h4><h4 id="如何理解“最优”的状态序列"><a href="#如何理解“最优”的状态序列" class="headerlink" title="如何理解“最优”的状态序列"></a>如何理解“最优”的状态序列</h4><h4 id="Viterbi搜索算法"><a href="#Viterbi搜索算法" class="headerlink" title="Viterbi搜索算法"></a>Viterbi搜索算法</h4><h4 id="参数学习"><a href="#参数学习" class="headerlink" title="参数学习"></a>参数学习</h4><h3 id="HMM应用"><a href="#HMM应用" class="headerlink" title="HMM应用"></a>HMM应用</h3><h4 id="中文分词问题"><a href="#中文分词问题" class="headerlink" title="中文分词问题"></a>中文分词问题</h4><p>应用在语言识别、自然语言处理、模式识别</p>
+<h3 id="HMM模型使用的条件"><a href="#HMM模型使用的条件" class="headerlink" title="HMM模型使用的条件"></a>HMM模型使用的条件</h3><p>使用HMM模型时我们的问题一般有这两个特征：</p>
+<p>１）我们的问题是基于序列的，比如时间序列，或者状态序列。</p>
+<p>２）我们的问题中有两类数据，一类序列数据是可以观测到的，即观测序列；而另一类数据是不能观察到的，即隐藏状态序列，简称状态序列。</p>
+<h2 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>最大应用：Bert</p>
+<p>本质上时seq2seq模型</p>
+<h4 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h4><p>是一种基于RNN的Encoder-Decoder算法。</p>
+<p>Encoding：输入转为向量形式&#x2F;Decoding：输出向量解码具体的网络图如下</p>
+<h5 id="网络图"><a href="#网络图" class="headerlink" title="网络图"></a>网络图</h5><p><img src="D:\homework_spcae\markdown_Image\v2-7bcffd4c01f7073c0bd530563de831a5_720w.png" alt="img"></p>
+<p>其中Encoder的输出会被抛弃，我们只需要隐藏状台EN作为下一次DE状态的输入</p>
+<h5 id="伪数学"><a href="#伪数学" class="headerlink" title="伪数学"></a>伪数学</h5><p>从更高层的角度来看算法，整个模型也无非是一种从输入到输出的函数映射。</p>
+<p>我们已知的输入数据是<code>How are you</code>，我们希望的输出是<code>你好啊</code>，</p>
+<p>模型学习了下面这些函数映射，组成了一个单射函数：</p>
+<p>{ How, are, you, &lt; S &gt; } —&gt; {你}</p>
+<p>{ How, are, you, &lt; S &gt;, 你 } —&gt; {好}</p>
+<p>{ How, are, you, &lt; S &gt;, 你, 好 } —&gt; {吗}</p>
+<p>{ How, are, you, &lt; S &gt;, 你, 好, 吗 } —&gt; {&lt; E &gt;}</p>
+<h5 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h5><p>Sequence to Sequence模型已经被谷歌成功应用于机器翻译上。</p>
+<p>而理论上任意的序列到序列的有监督问题都可以用这种模型。</p>
+<p>* 古诗生成，输入上一句，输出下一句</p>
+<p>* 对联生成，输入上联，输出下联</p>
+<p>* 有标注的分词训练，输入一句话，输出分词序列</p>
+<p>* 有标注的命名实体识别训练</p>
+<p>* 输入前10天的股价，输出后10天的股价</p>
+<p>* 对话机器人，输入用户对话，输出机器人的回答</p>
+<p>当然对于这些问题，实践中能否有效，模型的具体结构与参数，都是有待研究的。</p>
+<h4 id="self-attention-seq2seq"><a href="#self-attention-seq2seq" class="headerlink" title="self-attention seq2seq"></a>self-attention seq2seq</h4><h5 id="RNN的问题"><a href="#RNN的问题" class="headerlink" title="RNN的问题"></a>RNN的问题</h5><p>不容易平行化，进行计算</p>
+<h5 id="解决方法：利用CNN解决RNN"><a href="#解决方法：利用CNN解决RNN" class="headerlink" title="解决方法：利用CNN解决RNN"></a>解决方法：利用CNN解决RNN</h5><p>每一个CNN考虑的问题是有限的，可以通过多层CNN来解决。</p>
+<p><img src="D:\homework_spcae\markdown_Image\image-20220311174607515.png" alt="image-20220311174607515"></p>
+<p>需要多层的CNN</p>
+<h5 id="新的想法self-attention"><a href="#新的想法self-attention" class="headerlink" title="新的想法self-attention"></a>新的想法self-attention</h5><p>有新的能力进行序列化计算，同时算出来的平行话</p>
+<p><img src="D:\homework_spcae\markdown_Image\image-20220311174810189.png" alt="image-20220311174810189"></p>
+<h3 id="论文：《Attention-is-all-you-need》"><a href="#论文：《Attention-is-all-you-need》" class="headerlink" title="论文：《Attention is all you need》"></a>论文：《Attention is all you need》</h3><h4 id="权重设定"><a href="#权重设定" class="headerlink" title="权重设定"></a>权重设定</h4><p><img src="D:\homework_spcae\markdown_Image\image-20220311175109087.png" alt="image-20220311175109087"></p>
+<h4 id="那q和k做attention"><a href="#那q和k做attention" class="headerlink" title="那q和k做attention"></a>那q和k做attention</h4><p><img src="D:\homework_spcae\markdown_Image\image-20220311175327191.png" alt="image-20220311175327191"></p>
+<p>为什么要做除以根号</p>
+<p>因为在点乘后的维度越大，值越大所以除根号d</p>
+<h4 id="Soft-max"><a href="#Soft-max" class="headerlink" title="Soft-max"></a>Soft-max</h4><p><img src="D:\homework_spcae\markdown_Image\image-20220311175655376.png" alt="image-20220311175655376"></p>
+<h4 id="产生序列信息"><a href="#产生序列信息" class="headerlink" title="产生序列信息"></a>产生序列信息</h4><p><img src="D:\homework_spcae\markdown_Image\image-20220311175826118.png" alt="image-20220311175826118"></p>
+<h4 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h4><p> <img src="C:\Users\Administrator\AppData\Roaming\marktext\images\2022-03-16-16-50-32-image.png"></p>
+<p>a的平行化</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\marktext\images\2022-03-16-16-52-25-image.png"></p>
+<p>做v的平行化</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\marktext\images\2022-03-16-16-53-29-image.png"></p>
+<h4 id="总体操作"><a href="#总体操作" class="headerlink" title="总体操作"></a>总体操作</h4><p><img src="C:\Users\Administrator\AppData\Roaming\marktext\images\2022-03-16-16-54-21-image.png"></p>
+<h3 id="Multi-head-self-attention"><a href="#Multi-head-self-attention" class="headerlink" title="Multi-head self-attention"></a>Multi-head self-attention</h3><p>用两个head来举例子</p>
+<p>对q进行分裂，每个head各司其职</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\marktext\images\2022-03-16-16-58-55-image.png"></p>
+<h3 id="位置资讯"><a href="#位置资讯" class="headerlink" title="位置资讯"></a>位置资讯</h3><p>在原始的位置信息我们是未知的，因此添加一个ei来添加位置咨询</p>
+<img src="file:///C:/Users/Administrator/AppData/Roaming/marktext/images/2022-03-16-17-03-43-image.png" title="" alt="" width="163">
+
+<p>等同理解，手动</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\marktext\images\2022-03-16-17-04-44-image.png"></p>
+<h3 id="Seq2seq-with-Attention"><a href="#Seq2seq-with-Attention" class="headerlink" title="Seq2seq with Attention"></a>Seq2seq with Attention</h3><p>翻译器等</p>
+<p>可以用self-attention来取代RNN的局限性</p>
+<h3 id="Transform"><a href="#Transform" class="headerlink" title="Transform"></a>Transform</h3><p>左边为Encoder，右边为Decode</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\marktext\images\2022-03-16-17-39-40-image.png"></p>
+<h4 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h4><p>Batch Normalization和layer Normalization的区别</p>
+<p>Batch是同一个维度进行，layer是整个矩阵，因为RNN使用layer进行归一化</p>
+<h4 id="Feed-Forward"><a href="#Feed-Forward" class="headerlink" title="Feed Forward"></a>Feed Forward</h4><p>Feed Forward 层比较简单，是一个两层的全连接层，第一层的激活函数为 Relu，第二层不使用激活函数，对应的公式如下。</p>
+<h4 id="Decode"><a href="#Decode" class="headerlink" title="Decode"></a>Decode</h4><ul>
+<li>输出：对应i位置的输出词的概率分布</li>
+<li>输入：encoder的输出 &amp; 对应i-1位置decoder的输出。所以中间的attention不是self-attention，它的K，V来自encoder，Q来自上一位置decoder的输出</li>
+<li>解码：这里要注意一下，训练和预测是不一样的。在训练时，解码是一次全部decode出来，用上一步的ground truth来预测（mask矩阵也会改动，让解码时看不到未来的token）；而预测时，因为没有ground truth了，需要一个个预测。</li>
+</ul>
+<h2 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h2><h3 id="pre-train-Model"><a href="#pre-train-Model" class="headerlink" title="pre-train Model"></a>pre-train Model</h3><p>每一个token对应一个向量，但是不考虑上下文，同一向量的输出是一致的</p>
+<h4 id="使用contextualized-word-Embedding"><a href="#使用contextualized-word-Embedding" class="headerlink" title="使用contextualized word Embedding"></a>使用contextualized word Embedding</h4><p>是得每一个token有对应的输出</p>
+<p>LSTM、self-attention </p>
+<h4 id="Small-Model"><a href="#Small-Model" class="headerlink" title="Small Model"></a>Small Model</h4><h3 id="How-to-fine-tune"><a href="#How-to-fine-tune" class="headerlink" title="How to fine-tune"></a>How to fine-tune</h3><h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>multiple sentences时要使用【SEP】分隔符</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\marktext\images\2022-03-16-20-19-21-image.png"></p>
+<h4 id="output"><a href="#output" class="headerlink" title="output"></a>output</h4><p>对应每一个类型都有对应的Task Special</p>
+<p>  3、copy from input</p>
+<img src="file:///C:/Users/Administrator/AppData/Roaming/marktext/images/2022-03-16-20-24-43-image.png" title="" alt="" width="431">
+
+<p>输出时Document的一部分</p>
+<p>使用bert来解决，Task Specific进行dot</p>
+<p>4、general——sequence</p>
+<img src="file:///C:/Users/Administrator/AppData/Roaming/marktext/images/2022-03-16-20-31-36-image.png" title="" alt="" width="400">
+
+<h4 id="fine-ture"><a href="#fine-ture" class="headerlink" title="fine-ture"></a>fine-ture</h4><h5 id="1、两种fine的方法"><a href="#1、两种fine的方法" class="headerlink" title="1、两种fine的方法"></a>1、两种fine的方法</h5><p>pre-train model锁住，只作为一个特征提取器 </p>
+<p>pre-train的底层进行训练（不容易over-fitting）</p>
+<img title="" src="file:///C:/Users/Administrator/AppData/Roaming/marktext/images/2022-03-16-20-38-16-image.png" alt="" width="388">
+
+<h5 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h5><p>1、fine-true模型太大，保存小，我们用一个adapter来修改一部分参数，只调adapter</p>
+<img src="file:///C:/Users/Administrator/AppData/Roaming/marktext/images/2022-03-16-20-42-55-image.png" title="" alt="" width="401"> 
+
+<h5 id="weight-features"><a href="#weight-features" class="headerlink" title="weight features"></a>weight features</h5><p>通过权重相加进行</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\marktext\images\2022-03-16-20-48-28-image.png"></p>
+<p>w1和w2可以一起学习出来</p>
+<h3 id="How-to-pre-train"><a href="#How-to-pre-train" class="headerlink" title="How to pre-train"></a>How to pre-train</h3><p>Translation</p>
+<p>context Vector(CoVe)</p>
+<h4 id="Self-supervised-Learing"><a href="#Self-supervised-Learing" class="headerlink" title="Self-supervised Learing"></a>Self-supervised Learing</h4><p>用于部分的输入来预测另一部分的输出，产生输入和输出的片。</p>
+<img src="file:///C:/Users/Administrator/AppData/Roaming/marktext/images/2022-03-16-22-23-27-image.png" title="" alt="" width="436">
+
+<p>计算下一个token</p>
+<img src="file:///C:/Users/Administrator/AppData/Roaming/marktext/images/2022-03-16-22-28-36-image.png" title="" alt="" width="426">
+
+<p>利用with constraint来防止看见未来的时间</p>
+<h4 id="ELMO"><a href="#ELMO" class="headerlink" title="ELMO"></a>ELMO</h4><p>正向和逆向的</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\marktext\images\2022-03-16-23-53-32-image.png"></p>
+<h3 id="Masking-Input"><a href="#Masking-Input" class="headerlink" title="Masking Input"></a>Masking Input</h3><p>把输入的一些token盖住防止使用未来的消息</p>
+<p>1、mask或者Random Token</p>
+<p>Bert使用的Transformer是没有constraint的 </p>
+<h4 id="CBOW的区别"><a href="#CBOW的区别" class="headerlink" title="CBOW的区别"></a>CBOW的区别</h4><p>没有办法看很长，近远问题啊等等。但是bert就是考虑到原始问题的</p>
+<p>随即决定。</p>
+<h4 id="比较复杂的Mask"><a href="#比较复杂的Mask" class="headerlink" title="比较复杂的Mask"></a>比较复杂的Mask</h4><p>WWM</p>
+<p>phrase、Entity-level、SpanBert定一个范围来进行实现</p>
+<img src="file:///C:/Users/Administrator/AppData/Roaming/marktext/images/2022-03-17-00-06-06-image.png" title="" alt="" width="478">
+
+<h4 id="XLNet-Transformer-XL"><a href="#XLNet-Transformer-XL" class="headerlink" title="XLNet Transformer-XL"></a>XLNet Transformer-XL</h4><h2 id="自然语言处理分类"><a href="#自然语言处理分类" class="headerlink" title="自然语言处理分类"></a>自然语言处理分类</h2><h3 id="分类问题有两个类型"><a href="#分类问题有两个类型" class="headerlink" title="分类问题有两个类型"></a>分类问题有两个类型</h3><p>利用input分类：</p>
+<p>    1、one sentence</p>
+<p>    2、multiple sentences</p>
+<p>利用output分类：</p>
+<p>    1、one class</p>
+<p>    2、class for each token</p>
+<p>    3、copy from input</p>
+<p>    4、general sequence</p>
+<p>1、一段文字同一个类别</p>
+<p>2、一段文字一个token一个类别</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/03/13/hello-world/">Hello World</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-03-13</time><div class="content"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/03/10/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%8A%84%E7%AC%94%E8%AE%B0/">算法小抄笔记</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-03-10</time><div class="content"><h1 id="算法小抄笔记"><a href="#算法小抄笔记" class="headerlink" title="算法小抄笔记"></a>算法小抄笔记</h1><h2 id="二分算法"><a href="#二分算法" class="headerlink" title="二分算法"></a>二分算法</h2><p>二分算法需要注意的有算法框架，框架细节，框架变形的方法，二分算法最重要的是要了解搜索区间的定义</p>
 <h3 id="算法框架"><a href="#算法框架" class="headerlink" title="算法框架"></a>算法框架</h3><h4 id="针对找到对应的Target"><a href="#针对找到对应的Target" class="headerlink" title="针对找到对应的Target"></a>针对找到对应的Target</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">binarySearch</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>target<span class="token punctuation">)</span><span class="token punctuation">:</span>
     left <span class="token punctuation">,</span> right <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
     <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -66,11 +207,70 @@
 <h4 id="难点三、左右边界搜索时的方法"><a href="#难点三、左右边界搜索时的方法" class="headerlink" title="难点三、左右边界搜索时的方法"></a>难点三、左右边界搜索时的方法</h4><p>在二分找到target的时候，我们为了搜索左边界：right &#x3D; mid-1，搜索右边界 left &#x3D; mid+1</p>
 <h4 id="难点四、返回值的确定"><a href="#难点四、返回值的确定" class="headerlink" title="难点四、返回值的确定"></a>难点四、返回值的确定</h4><h5 id="最左边界"><a href="#最左边界" class="headerlink" title="最左边界"></a>最左边界</h5><p>在返回边界的时候要进行越界判断，当出现target比所有数组中的数字都大的情况，left会出现越界的情况。返回的是left是因为，当nums[mid]&#x3D;&#x3D;target的时候，right &#x3D; mid-1到下一个位置，因此当退出循环的时候，left &#x3D; right+1，就到了最左的为一个和target相同的位置</p>
 <h5 id="最右边界"><a href="#最右边界" class="headerlink" title="最右边界"></a>最右边界</h5><p>在返回边界的时候判断，taget比所有数组都小，则right会出界，返回right是因为，左边界搜索的时候，left &#x3D; right+1，right就是相等时的值</p>
+<h4 id="难点五、何时选择边界条件"><a href="#难点五、何时选择边界条件" class="headerlink" title="难点五、何时选择边界条件"></a>难点五、何时选择边界条件</h4><p>在左闭右闭的情况下，在遇到相同的值和不同值的情况下，会根据情况的不同产生两种推出循环的情况，即left &#x3D; right+1和right &#x3D; left-1.因此使用左闭右开减少这种情况，同时在题目中要知道左右闭区间到底需不需要二次考虑如下一题</p>
+<h5 id="剑指-Offer-11-旋转数组的最小数字因为当我们确定当前m的时候，在下一次循环中还是需要进行下一次判断，该位置是不是最小值而不能直接判断过就不判断两，需要多次判断同一个值，原因是判断不够直接。"><a href="#剑指-Offer-11-旋转数组的最小数字因为当我们确定当前m的时候，在下一次循环中还是需要进行下一次判断，该位置是不是最小值而不能直接判断过就不判断两，需要多次判断同一个值，原因是判断不够直接。" class="headerlink" title="剑指 Offer 11. 旋转数组的最小数字因为当我们确定当前m的时候，在下一次循环中还是需要进行下一次判断，该位置是不是最小值而不能直接判断过就不判断两，需要多次判断同一个值，原因是判断不够直接。"></a>剑指 Offer 11. 旋转数组的最小数字因为当我们确定当前m的时候，在下一次循环中还是需要进行下一次判断，该位置是不是最小值而不能直接判断过就不判断两，需要多次判断同一个值，原因是判断不够直接。</h5><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">minArray</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> numbers<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> numbers<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        i<span class="token punctuation">,</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span><span class="token builtin">len</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>i<span class="token operator">&lt;=</span>j<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            m <span class="token operator">=</span> <span class="token punctuation">(</span>i<span class="token operator">+</span>j<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span>
+            <span class="token keyword">if</span> numbers<span class="token punctuation">[</span>m<span class="token punctuation">]</span><span class="token operator">></span>numbers<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                i <span class="token operator">=</span> m<span class="token operator">+</span><span class="token number">1</span>
+            <span class="token keyword">elif</span> numbers<span class="token punctuation">[</span>m<span class="token punctuation">]</span><span class="token operator">&lt;</span>numbers<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                j <span class="token operator">=</span> m
+            <span class="token keyword">elif</span> numbers<span class="token punctuation">[</span>m<span class="token punctuation">]</span><span class="token operator">==</span>numbers<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                j <span class="token operator">=</span> j<span class="token operator">-</span><span class="token number">1</span>
+        <span class="token keyword">return</span> numbers<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>1、首先确定左右的搜索边界的开闭性，我们统一使用闭区间</p>
 <p>2、闭区间while（&lt;&#x3D;）</p>
 <p>3、区间缩小的时候nums[m]&#x3D;&#x3D;target的相等的时候，左边界right &#x3D; mid-1，右边界left &#x3D; mid+1</p>
 <p>4、左右边界问题的返回值就是对应的left和right</p>
-</div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By wenjiawei</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+<h2 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h2><p>需要思考3个问题</p>
+<p>1、路径：已经做出的选择</p>
+<p>2、选择列表：当前可以做的选择</p>
+<p>3、结束条件：决策树底层，无法再做选择条件</p>
+<h3 id="算法框架："><a href="#算法框架：" class="headerlink" title="算法框架："></a>算法框架：</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">def</span> <span class="token function">backtrack</span><span class="token punctuation">(</span>路径<span class="token punctuation">,</span>选择列表<span class="token punctuation">)</span>：
+    <span class="token keyword">if</span> 满足结束条件<span class="token punctuation">:</span>
+        <span class="token comment">#路径需要深拷贝</span>
+        result<span class="token punctuation">.</span>append<span class="token punctuation">(</span>路径<span class="token punctuation">)</span>
+        <span class="token keyword">return</span>
+    <span class="token keyword">for</span> 选择 <span class="token keyword">in</span> 选择列表<span class="token punctuation">:</span>
+        做选择
+        backtrack<span class="token punctuation">(</span>路径，选择列表<span class="token punctuation">)</span>
+        撤销选择
+track <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>路径
+backtrack<span class="token punctuation">(</span>选择列表<span class="token punctuation">,</span>路径<span class="token punctuation">)</span>
+<span class="token keyword">return</span> result<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>backtrack即树的遍历</p>
+<p>在做选择部分就是我们的界限函数部分</p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>全排列</p>
+<p>N-皇后</p>
+<p>括号生成</p>
+<h2 id="二叉树类型问题"><a href="#二叉树类型问题" class="headerlink" title="二叉树类型问题"></a>二叉树类型问题</h2><p>树类型算法在其思路上逃不开几个问题：树的遍历方式即搜索方向（DFS和BFS），界限函数的确定即回溯算法，下面根据</p>
+<h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">BFS</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> A<span class="token punctuation">:</span>Treenode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+    cur <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">if</span> A<span class="token punctuation">:</span>
+        cur<span class="token punctuation">.</span>append<span class="token punctuation">(</span>A<span class="token punctuation">)</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>cur<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        node <span class="token operator">=</span> cur<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+        res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> node<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
+            cur<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> node<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
+            cur<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> res<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">DFS</span><span class="token punctuation">(</span>A<span class="token punctuation">:</span>Treenode<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>A<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment">#操作</span>
+        DFS<span class="token punctuation">(</span>A<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+        DFS<span class="token punctuation">(</span>A<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+<span class="token keyword">return</span> DFS<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/03/10/test/">算法</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-03-10</time><div class="content"></div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By wenjiawei</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')
